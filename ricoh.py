@@ -17,7 +17,7 @@ def main():
 
   command = sys.argv[1]
   if command == 'ls':
-    print ', '.join(ls())
+    print(', '.join(ls()))
 
   if command == 'download':
     download()
@@ -46,17 +46,21 @@ def download_files(directory):
     download_file(directory, filename)
 
 def download_file(directory, filename):
+  outname = os.path.join(OUTDIR, directory, filename)
+  if os.path.exists(outname):
+    print('Skipping (already exists): {}'.format(outname))
+    return
   resource = '/'.join([URL, directory, filename])
+  print('Downloading: {}...'.format(outname), end='', flush=True)
   r = requests.get(resource)
   if r.status_code != 200:
     print('Something went wrong downloading {}: {}'.format(
       resource, r.status_code))
     sys.exit(r.status_code)
 
-  outname = os.path.join(OUTDIR, directory, filename)
-  print('Downloading: {}'.format(outname))
   with open(outname, 'wb') as outfile:
     outfile.write(r.content)
+  print(' done!')
 
 def ls():
   try:

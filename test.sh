@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# python download.py
-# python download.py ls
-# python download.py ls 100_0211
-# python download.py download
-python download.py download 116_0831 117_0901 118_0902
+# python ricoh.py
+# python ricoh.py ls
+# python ricoh.py ls 100_0211
+# python ricoh.py download
+python ricoh.py download 101_1023 102_1024 103_1025 104_1026
